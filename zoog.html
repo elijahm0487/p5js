@@ -1,0 +1,63 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+
+<head>
+    <title>p5js Template</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.5.3/p5.js"></script>
+    
+    <script>
+        function setup() {
+            createCanvas(800, 600); //Creates the canvas for our sketch. 
+            
+        }
+
+        function draw() {
+            fill("red") //Fills in the red coloring. 
+            textSize(50); //Fixes the size of string "Hello World" 
+            text("Hello World", 225, 50); //Creates string "Hello World".
+            line(258, 110, 360, 160); //Creates the first of the robot's antenna
+            line(462, 115, 375, 160); //Creates the second robot antenna
+            rect(290, 150, 150, 100); // Creates the rectangle for the robot's head
+            fill("white") // Gives the robot's eyes their white coloring
+            ellipse(325, 190, 50, 85); // Creates the first ellipse for the robot's eyes
+            ellipse(410, 190, 50, 85); // Creates the second ellipse for the robot's eyes
+            line(320, 245, 420, 245) // Creates the line for the robot's mouth
+            line(360, 250, 360, 325); // Creates the line for the robot's neck
+            fill("green") // Gives the quadrilateral cape of the robot its green coloring. 
+            quad(340, 475, 300, 300, 435, 320, 500, 375); // Creates the quadrilateral cape of the robot. 
+            fill("red") // Gives the robot's hands and body their red coloring
+            ellipse(360, 325, 150, 75); // Creates an ellipse for the robot's body.
+            stroke(0, 0, 0); // Colors the lines of the robot's body black.
+            strokeWeight(10); // Forces the black lines of the robot's body to stand out.
+            line(280, 360, 285, 315); //Creates a line for the firt arm of the robot.
+            rect(260, 355, 35, 35); // Creates a rectangle for the first hand of the robot.
+            line(445, 365, 435, 325); // Creates the second arm for the robot.
+            rect(430, 360, 35, 35); // Creates the second rectangle for the robot's second hand.
+            line(315, 430, 315, 355); // Creates a line for the robot's first leg.
+            line(400, 430, 400, 360); // Creates another line for the robot's second leg.
+            fill("black") // Creates the black coloring for the wheels of the robot.
+            ellipse(312, 435, 50, 50); // Creates the first ellipse for the robot's wheel.
+            ellipse(402, 435, 50, 50); // Creates the second ellipse for the robot's second wheel.
+
+            
+            
+            
+        }
+    </script>
+</head>
+
+<body>
+    <div id="code" class="container-fluid">
+        <script src="https://gist-it.appspot.com/github/elijahm0487/p5js/blob/gh-pages/Zoog.html?footer=0"></script>
+    </div>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+    <script>
+        $(window).bind("load", function() {
+            $('#code').before($('#defaultCanvas0').remove());
+        });
+    </script>
+</body>
+
+
+</html>
