@@ -1,0 +1,82 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+
+<head>
+    <title>p5js Template</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.5.3/p5.js"></script>
+    
+    <script>
+    var rColor;
+    var gColor;
+    var bColor; 
+        function setup() { // Sets up the canvas, colors shapes black to start, creates random red, green and blue variables
+            createCanvas(400,400);
+            background(200);
+            fill(0,0,0);
+            rColor = random(15,255);
+            gColor = random(15,255);
+            bColor = random(45,255);
+            textSize(12);
+            text("Press the shapes and area undernerath the line to change some colors!",10,300);
+            text("Press any key to whiten the canvas and get rid of these messages",10,325);
+
+
+        }
+
+        function draw() { // Draws ellipses, rectangle and line. 
+            rect(width/2,height/2,50,50);
+            ellipse(0,0,100,100);
+            ellipse(width,0,100,100);
+            line(0,250,width,250);
+        }
+        function mousePressed() { // Detects if the mouse has been pressed. 
+            if(mouseX < width/3) { // If the mouse has been pressed in a location less than the width of the canvas/3,our shapes will turn red. 
+                fill(rColor,0,0);
+                rect(width/2,height/2,50,50);
+                rColor++; // Increases the red value 
+                
+
+            }
+            else if(mouseY > height*2/3) { // If the mouse has been pressed in a location greater than the height of the canvas * 2/3, our shapes will turn blue. 
+                fill(0,gColor,0);
+                rect(width/2,height/2,50,50);
+                gColor++; // Increases the green value 
+                
+
+            }
+            else { // If the mouse has been clicked anywhere other than the previously mentioned locations, our shapes will turn green.""
+                fill(0,0,bColor);
+                rect(width/2,height/2,50,50);
+                bColor++; // Increases the blue value. 
+
+            }
+
+            }
+            function keyPressed() { // Detects if any key has been pressed. 
+                clear(); // Clears the text messages and whitens the canvas. 
+             
+            }
+            
+
+
+           
+           
+    </script>
+</head>
+
+<body>
+    <div id="code" class="container-fluid">
+        <script src="https://gist-it.appspot.com/github/elijahm0487/p5js/blob/gh-pages/drawingColorChange.html?footer=0"></script>
+    </div>
+
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+    <script>
+        $(window).bind("load", function() {
+            $('#code').before($('#defaultCanvas0').remove());
+        });
+    </script>
+</body>
+ 
+
+</html>
