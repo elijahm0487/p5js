@@ -1,0 +1,105 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+
+<head>
+    <title>Pong</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.4.13/p5.js"></script>
+    <script>
+    // Global variables to be used throughout this project
+        var ballX; // Variable that store the 
+        var ballY; // x and y coordinates of our ball as it moves // 
+        var ballSpeedX = 5; // Controls the amount of x and y 
+        var ballSpeedY = 5; // pixels that the ball will move // 
+        var paddleHeight = 30; // sets the height of our paddle
+
+// Sets up our project for use 
+        function setup() {
+            createCanvas(800, 600); // Creates a canvas to play pong on 
+            // noCursor(); // Stops the cursor from appearing once it lies on the mouse 
+            ballX = width / 2; // Starts the ball from 
+            ballY = height / 2; // the middle of the canvas
+        }
+// Draws the pong game itself by drawing out each of our functions
+        function draw() {
+            background(128); // Changes the color of our background to a dark gray
+            moveBall(); // Function that is called to move the ball 
+            checkCollide(); // Function that is called to check if the ball has collided with one of the walls in the canvas
+            drawPaddle(); // Function that draws out the paddle to hit the ball in pong
+            drawBall(); // Function that draws out the ball to be used in pong 
+        }
+// Function that controls how the ball will move along the canvas 
+        function moveBall() {
+            ballX = ballX + ballSpeedX;  // Increases the value of ballX and ball Y so that 
+            ballY = ballY + ballSpeedY; // the ball can move along the x and y axis
+
+            console.log("ballSpeedX: " + ballSpeedX + 
+                               ", ballSpeedY: " + ballSpeedY); // Logs to the console how much the ball has moved along the x and y canvas
+        }
+// Function that checks whether or not the ball has hit the walls of the canvas
+        function checkCollide() {
+            if (ballX < 0 || ballX > width) { // Checks if the ball has hit the top of the canvas along the x axis
+                ballSpeedX = ballSpeedX * -1; // If the ball has hit along the top of the x-axis, the ball will bounce back in another direction
+            }
+            if (ballY < 0) { // Checks if the ball has hit the top of the canvas along the y axis
+                ballSpeedY = ballSpeedY * -1; // If the ball has hit the top of the y-axis, the ball will bounce downwards //
+            }
+            if (ballY > height - paddleHeight) { // Checks if the ball has hit the top of our paddle 
+                if (ballX > mouseX && ballX < mouseX + 200) { // If the ball has hit the paddle
+                    ballSpeedY = ballSpeedY * -1; // it will bounce off the paddle //
+                }
+                else { 
+                    text("GAME OVER!", width / 2, height / 2); // Detects if the ball has hit the bottom of the canvas past the paddle
+                    noLoop(); // Ends the game by stopping the loop
+                }
+            }
+        }
+// Function that draws the ball itself
+        function drawBall() {
+            noStroke(); // Erases the ball's outline
+            ellipse(ballX, ballY, 20, 20); // Creates the ball which is in the shape of an ellipse
+        }
+// Function that draws the paddle 
+        function drawPaddle() {
+            strokeWeight(4); // Darkens the outline of the paddle 
+            rect(mouseX, height - paddleHeight - 4, 200, paddleHeight); // Creates the paddle in a rectangular shap
+        }
+           
+          // Function that detects what keys are pressed     
+        function keyPressed() {
+            if(keyCode == RETURN) { // detects if specifically the return key is pressed
+                ballSpeedX = 0; // if the return key is pressed the ball's 
+                ballSpeedY = 0; // speed will reduce to 0, stopping the ball
+                
+            }
+            else { // detects if any of the other keys are pressed
+                ballSpeedX+= 5; // if any of the other keys are pressed
+                ballSpeedY+= 5; // the ball's x and y speed will increase by 5
+                
+            }
+        }
+        
+              
+              
+               
+           
+          
+            
+        
+    </script>
+</head>
+
+<body>
+    <div id="code" class="container-fluid">
+        <script src="https://gist-it.appspot.com/github/elijahm0487/p5js/blob/gh-pages/pong.html?footer=0"></script>
+    </div>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+    <script>
+        $(window).bind("load", function() {
+            $('#code').before($('#defaultCanvas0').remove());
+        });
+    </script>
+</body>
+
+</html>
+
