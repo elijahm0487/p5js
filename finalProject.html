@@ -1,0 +1,127 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+
+<head>
+    <title>p5js Template</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.5.3/p5.js"></script>
+    
+    <script>
+    var x; // x-value of the torch's center 
+    var y; // y-value of torch's center 
+    var w; // width value of torch 
+    var h; // height value of torch 
+    var torch1; // variable to control number of torches 
+    var restartLife; // restart used if user does not enter cave 
+    var winEnd; // win triggered if user chooses not to grab the torch 
+    var restartFight; // restart triggered if user chooses not to run from cyclops
+    var winRestart; // restart triggered if user wins game by leaving cave without the torch 
+    var cave; // asks if user will enter cave or not 
+    var choiceTorch; // asks if user will grab the torch 
+    var cyclops; // asks user if they will run or fight cyclops 
+    var cyclopsChoices = ["run", "fight"]; // holds choices that can be chosen by user for the cyclops variable 
+    var leftRight = ["left","right"]; // holds possible answers for user when deciding if they want to go left or right when approaching fork in the road
+    var game; // controls whether user will restart game and forces game to run 
+        function setup() {
+            background(0); // changes the background color of the canvas
+            createCanvas(800,600); // creates the canvas 
+            game = 0; // sets game's value 
+            x = 400; // sets the x-value of the circle's center  
+            y = 450; // sets the y-value of the circle's center 
+            w = 100; // sets the width of the circle
+            h = 100; // sets the height of the circle 
+          color = "orange" // sets the color to string orange which will be used in fill 
+          var torch1 = new Torches(x,y,w,h); // creates the torch as an object 
+        }
+        function draw() {
+            torch1.display() // displays torch 
+        }
+        function mousePressed() { // game runs as soon as user clicks on the canvas
+            while(game == 0) { // forces game to run as long as variable game's value is 0
+                cave = prompt("You are walking through a forest and see a cave. It is dark. Will you enter?"); 
+                if(cave == "yes" || cave == "Yes" || cave == "y") { // conditional testing if user chooses to enter cave 
+                    background(0); 
+                    choiceTorch = prompt("You feel the cave around you and begin to search for a light. Instead you find a lit torch. Will you grab the torch or continue to search the darkness?") 
+                    if(choiceTorch == "torch" || choiceTorch == "grab the torch" || choiceTorch == "grab torch") { // conditional testing if user chooses to take the torch 
+                      fill(color);
+                        ellipse(x,y,w,h); 
+                        cyclops = prompt("Taking the torch has awoken a baby cyclops. 'You stole my nightlight, MOMMY!' screams the cyclops. Will you run or try to fight?")
+                        if(cyclops == cyclopsChoices[0]) { // tests if user chooses to run from the cyclops 
+                            leftRight = prompt("There's a fork in the road. Left or Right?") // tests if the user wants to go along the left or right route.
+                            if(leftRightChoice == "left" || leftRight == "right" ) { // tests if user will go left or right 
+                                newGame = prompt("You've won this little game of ours. It's over. Wanna play again?")  // No matter what the user chose this variable tells the user they won
+                                if(newGame == "yes" || newGame == "Yes") { // Tests if user wants to play the game again after winning
+                                    game = 0; // If user chooses to play again, game will be set to its original value so the game can restart
+                                
+                                    
+                                    
+                                }
+                                else { // If the user chooses not to play again, game's value will be changed and so, the game won't restart
+                                    game = 1 // The new value of game so it won't restart
+                                }
+                            }
+                        }
+                        else { // triggered if user chooses not to run from cyclops 
+                            restartFight = prompt("The cyclops brutally murdered you. Enter r to play again.") // If the user chooses not to run from the cyclops, they'll die
+                            if(restartFight == "r" || restartFight == "R") { // tests if user wants to restart their game after the cyclops encounter
+                                game = 0; // Sets the game value to its original value leading to the game restarting 
+                            }
+                            else { // if the user chooses not to restart 
+                                game = 1; // new value of game if user chooses not to restart 
+                            }
+                        }
+                    }
+                    else if(choiceTorch == "search darkness" || choiceTorch == "no") { // tests if the user chooses to search the darkness instead of grabbing the torch
+                        winEnd = prompt("You continue to search the cave and think you see a light. Will you run to it?") // asks user if they'll run to the cave's light 
+                        if(winEnd == "run" || restartDark == "yes") { // asks if user will run to the cave's light 
+                            winRestart = prompt("You left the cave. It's over. You've won. Enter r to play again.") // Puts up another win message if the user escapes the cave and asks if they'd like to play again 
+                            if(winRestart == "r" || winRestart == "R") { // if user enters the r key they'll trigger another restart
+                                game = 0; // original value of game that will trigger a restart
+                            }
+                            else { // if user chooses not to restart the game after winning from searching the darkness, the game will end
+                                game = 1; // changes the value of game so the game can end 
+                            }
+                            
+            
+                    }
+                    
+                        
+                    
+                    }
+                    
+                }
+            else { // triggered if user chose not to enter the cave at the beginning 
+                restartLife = prompt("You never entered the cave and lived a normal life. If the mystery of the cave still haunts you, enter the r key.") // message displayed if user chooses not to enter the cave 
+                if(restartLife == "R" || restartLife == "r") { // if user chooses not to enter the cave, they can enter the r key to restart the game 
+                    game = 0; // sets the game to its original value so it can restart 
+                }
+                else { // if user does not enter r the game will end 
+                    game = 1; // changes the value of game so the game can end 
+                }
+            }
+        }
+        }
+            // Creates the object, called torches 
+            function Torches(x,y,w,h,color) {
+                this.display = function() {
+                    fill(color); // colors the torch as orange 
+                    ellipse(x,y,w,h); // sets functiion to create ellipse in game 
+                    
+                } 
+            }
+    </script>
+</head>
+
+<body>
+    <div id="code" class="container-fluid">
+        <script src="https://gist-it.appspot.com/github/elijahm0487/p5js/blob/gh-pages/finalProject.html?footer=0"></script>
+    </div>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+    <script>
+        $(window).bind("load", function() {
+            $('#code').before($('#defaultCanvas').remove());
+        });
+    </script>
+</body>
+
+</html>
